@@ -16,9 +16,12 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('title_en');
             $table->text('body');
+            $table->text('body_en');
             $table->string('image');
             $table->string('slug');
+            $table->string('slug_en');
             $table->timestamp('published_at')->nullable();
             $table->boolean('status')->default(0);
             $table->unsignedBigInteger('user_id')->nullable();

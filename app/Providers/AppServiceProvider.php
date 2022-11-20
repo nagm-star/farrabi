@@ -6,9 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\Post;
 use App\Models\Setting;
 use App\Models\Contact;
-use App\Models\Project;
 use App\Models\User;
-use App\Models\Service;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Pagination\Paginator;
 
@@ -47,21 +45,6 @@ class AppServiceProvider extends ServiceProvider
         
         
         view()->composer('*', function($view){
-            $latestProject = Project::orderBy('created_at' ,'DESC')->paginate(5);
-            $view->with('latestProject', $latestProject);
-        });
-        
-        view()->composer('*', function($view){
-            $allservices = Service::all();
-            $view->with('allservices', $allservices);
-        });
-        
-        view()->composer('*', function($view){
-            $projects = Project::all();
-            $view->with('projects', $projects);
-        });
-        
-        view()->composer('*', function($view){
             $allPosts = Post::all();
             $view->with('allPosts', $allPosts);
         });
@@ -69,11 +52,6 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function($view){
             $allusers = User::all();
             $view->with('allusers', $allusers);
-        });
-        
-        view()->composer('*', function($view){
-            $allservices = Service::all();
-            $view->with('allservices', $allservices);
         });
         
         view()->composer('*', function($view){

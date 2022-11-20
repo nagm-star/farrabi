@@ -16,8 +16,11 @@ return new class extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('name_en');
             $table->mediumText('key');
+            $table->mediumText('key_en');
             $table->mediumText('description');
+            $table->mediumText('description_en');
             $table->string('contact_number');
             $table->string('email'); 
             $table->string('address');

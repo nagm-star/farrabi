@@ -42,11 +42,35 @@
                             <div class="form-group  row mb-2">
 
                                 <div class="col-md-10">
+                                <label for="title_en" class="col-sm-2 col-form-label">Title_en</label>
+                                    <input type="text" class="form-control  @if ($errors->has('title_en'))   is-invalid @endif" name="title_en" id="title_en"  value="{{ isset($slide) ? $slide->title_en : old('title_en')}}">
+                                    @if ($errors->has('title_en'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('title_en') }}
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group  row mb-2">
+
+                                <div class="col-md-10">
                                 <label for="" class="col-sm-2 col-form-label">Body</label>
                                     <input type="text" class="form-control  @if ($errors->has('body'))   is-invalid @endif" name="body" id="body"  value="{{ isset($slide) ? $slide->body : old('body')}}">
                                     @if ($errors->has('body'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('body') }}
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group  row mb-2">
+
+                                <div class="col-md-10">
+                                <label for="body_en" class="col-sm-2 col-form-label">Body</label>
+                                    <input type="text" class="form-control  @if ($errors->has('body_en'))   is-invalid @endif" name="body_en" id="body_en"  value="{{ isset($slide) ? $slide->body_en : old('body_en')}}">
+                                    @if ($errors->has('body_en'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('body_en') }}
                                     </div>
                                     @endif
                                 </div>

@@ -8,36 +8,7 @@
             <span class="nav-main-link-name">Dashboard</span>
           </a>
         </li>
-        @can('is_admin')
 
-        <li class="nav-main-item">
-          <li class="nav-main-heading">Services</li>
-          <li class="nav-main-item">
-            <a class="nav-main-link active" href="{{  route('admin.services.index') }}">
-              <i class="nav-main-link-icon si si-people"></i>
-              <span class="nav-main-link-name">All Services</span>
-            </a>
-          </li>
-          <li class="nav-main-item">
-            <a class="nav-main-link active" href="{{  route('admin.services.index') }}">
-              <i class="nav-main-link-icon si si-bag"></i>
-              <span class="nav-main-link-name">Sudanese Services</span>
-            </a>
-          </li>
-          <li class="nav-main-item">
-            <a class="nav-main-link active" href="{{  route('admin.services.index') }}">
-              <i class="nav-main-link-icon si si-bag"></i>
-              <span class="nav-main-link-name">Foreign Services</span>
-            </a>
-          </li>
-        </li>
-        <li class="nav-main-item">
-          <a class="nav-main-link active" href="{{ route('admin.projects.index') }}">
-            <i class="nav-main-link-icon si si-note"></i>
-            <span class="nav-main-link-name">Projects</span>
-          </a>
-        </li>
-        @endcan
         @can('user-admin')
         <li class="nav-main-heading">Blog</li>
         <li class="nav-main-item">

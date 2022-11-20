@@ -27,6 +27,7 @@
 
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
+                            <h5>Arabic Content</h5> <hr>
                             <div class="form-group  row mb-2">
 
                                 <div class="col-md-10">
@@ -53,7 +54,33 @@
 
                                 </div>
                             </div>
+                            <h5 class="mt-3">English Content</h5> <hr>
+                            <div class="form-group  row mb-2">
 
+                                <div class="col-md-10">
+                                <label for="title_en" class="col-sm-2 col-form-label">Title</label>
+                                    <input type="text" class="form-control  @if ($errors->has('title_en'))   is-invalid @endif" name="title_en" id="title_en"  value="{{ isset($post) ? $post->title_en : old('title_en')}}">
+                                    @if ($errors->has('title_en'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('title_en') }}
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+        
+                            <div class="form-group  row">
+
+                                <div class="col-md-10">
+                                <label for="body_en" class="col-sm-2 col-form-label">Description</label>
+                                <textarea name="body_en" class="form-control @if ($errors->has('body_en'))   is-invalid @endif" id="js-ckeditor-en" cols="30"  rows="10"  >{{isset($post) ? $post->body_en : old('body_en')}}</textarea>
+                                @if ($errors->has('body_en'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('body_en') }}
+                                </div>
+                                @endif
+
+                                </div>
+                            </div>
                   <br>
  
                   @if (isset($post))
@@ -139,6 +166,7 @@ enableSecond: true
 })
 
  CKEDITOR.replace( 'js-ckeditor' );
+ CKEDITOR.replace( 'js-ckeditor-en' );
 
 </script>
 
@@ -168,8 +196,7 @@ enableSecond: true
     
     })
     
-     CKEDITOR.replace( 'js-ckeditor' );
-    
+
     </script>
 
 @endsection

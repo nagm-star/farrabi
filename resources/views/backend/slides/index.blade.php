@@ -87,7 +87,7 @@
             @endforeach
             @else
             <tr>
-                <td colspan="4" class="d-none d-sm-table-cell fs-sm text-center">
+                <td colspan="5" class="d-none d-sm-table-cell fs-sm text-center">
                   <p calss="text-center">No slides</p>
                 </td>
                 

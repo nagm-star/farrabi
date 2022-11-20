@@ -36,6 +36,18 @@
                                     @endif
                                 </div>
                             </div>
+
+                            <div class="form-group  row mb-2">
+                                <div class="col-md-10">
+                                <label for="name_en" class="col-sm-2 col-form-label">English Title</label>
+                                    <input type="text" class="form-control  @if ($errors->has('name_en'))   is-invalid @endif" name="name_en" id="name_en"  value="{{ $settings->name_en }} ">
+                                    @if ($errors->has('name_en'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('name_en') }}
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
                             <div class="form-group  row mb-2">
 
                                 <div class="col-md-10">
@@ -49,17 +61,44 @@
                                 </div>
                             </div>
         
+                            <div class="form-group  row mb-2">
+
+                                <div class="col-md-10">
+                                <label for="key_en" class="col-sm-2 col-form-label">English Key Words</label>
+                                    <input type="text" class="form-control  @if ($errors->has('key_en'))   is-invalid @endif" name="key_en" id="key_en"  value="{{ $settings->key_en }} ">
+                                    @if ($errors->has('key_en'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('key_en') }}
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+        
                             <div class="form-group  row">
                                 <div class="col-md-10">
                                 <label for="" class="col-sm-2 col-form-label">Description</label>
-                                <textarea row="2" name="description" class="form-control @if ($errors->has('description'))   is-invalid @endif" id="js-ckeditor" cols="30"  rows="10"  >{{isset($settings) ? $settings->description : old('description')}} 
-                                {{ $settings->description }}
+                                <textarea row="2" name="description" class="form-control @if ($errors->has('description'))   is-invalid @endif" id="js-ckeditor" cols="30"  rows="10"  >
+                                    {{isset($settings) ? $settings->description : old('description')}} 
                                 </textarea>
                                 @if ($errors->has('description'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('description') }}
                                 </div>
                                 @endif
+                            </div>
+        
+                            <div class="form-group  row">
+                                <div class="col-md-10">
+                                <label for="description_en" class="col-sm-2 col-form-label">Description</label>
+                                <textarea row="2" name="description_en" class="form-control @if ($errors->has('description_en'))   is-invalid @endif" id="js-ckeditor-en" cols="30"  rows="10"  >
+                                    {{isset($settings) ? $settings->description_en : old('description_en')}} 
+                                </textarea>
+                                @if ($errors->has('description_en'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('description_en') }}
+                                </div>
+                                @endif
+                            </div>
                             </div>
 
                   @if (isset($settings))
@@ -204,6 +243,7 @@ enableSecond: true
 })
 
  CKEDITOR.replace( 'js-ckeditor' );
+ CKEDITOR.replace( 'js-ckeditor-en' );
 
 </script>
 
@@ -234,6 +274,7 @@ enableSecond: true
     })
     
      CKEDITOR.replace( 'js-ckeditor' );
+     CKEDITOR.replace( 'js-ckeditor-en' );
     
     </script>
 

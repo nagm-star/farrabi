@@ -68,6 +68,8 @@ class SlideController extends Controller
         $slide = new Slide();
         $slide->title = $request->input('title');
         $slide->body = $request->input('body');
+        $slide->title_en = $request->input('title_en');
+        $slide->body_en = $request->input('body_en');
 
         if($request->has('status')){
             $slide->status = $request->input('status');
@@ -118,7 +120,7 @@ class SlideController extends Controller
         if (! Gate::allows('is_admin')) {
             return view('errors.403');
         }
-        return view('backend.slides.create')->with('slide', $slide);
+        return view('backend.slides.edit')->with('slide', $slide);
     }
 
     /**
@@ -130,70 +132,45 @@ class SlideController extends Controller
      */
     public function update(Request $request, Slide $slide)
     {
-        //dd($request->all());
+        // dd($request->all());
         if (! Gate::allows('is_admin')) {
             return view('errors.403');
         }
         try{
        
-            if($request->hasFile('image')) {
-
-                $path = parse_url($slide->image);
- 
-                File::delete(public_path($path['path']));  
- 
-                $image       = $request->file('image');
-                //$filename = time().'.'.$request->file->extension();  
-        
-                $filename    = $image->getClientOriginalName();
-        
-                //Fullsize
-                $image->move(public_path().'/uploads/slides/',$filename);
-        
-                $image_resize = Image::make(public_path().'/uploads/slides/'.$filename);
-                //$image_resize->fit(300, 300);
-                $image_resize->save(public_path('uploads/slides/' .$filename));
-               // $path = $request->file('image')->move(public_path('/uploads/gallary'), $fileNameToStore);
-             
-            $slide->image = $filename;
-               
+            if($request->hasFile('image')){
+                // Get filename with the extension
+                $filenameWithExt = $request->file('image')->getClientOriginalName();
+                // Get just filename
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                // Get just ext
+                $extension = $request->file('image')->getClientOriginalExtension();
+                // Filename to store
+                $fileNameToStore= $filename.'_'.time().'.'.$extension;
+                // Upload Image
+    
+                $path = $request->file('image')->move(public_path('/uploads/slides'), $fileNameToStore);
             }
                    
-            if($request->hasFile('image_en')) {
 
-                $path = parse_url($slide->image_en);
- 
-                File::delete(public_path($path['path']));  
- 
-                $image       = $request->file('image_en');
-                //$filename = time().'.'.$request->file->extension();  
-        
-                $filename2    = $image->getClientOriginalName();
-        
-                //Fullsize
-                $image->move(public_path().'/uploads/slides/',$filename2);
-        
-                $image_resize = Image::make(public_path().'/uploads/slides/'.$filename2);
-                //$image_resize->fit(300, 300);
-                $image_resize->save(public_path('uploads/slides/' .$filename2));
-               // $path = $request->file('image')->move(public_path('/uploads/gallary'), $fileNameToStore);
-            $slide->image_en = $filename2;
-               
-            }
      
         if($request->has('status')){
         $slide->status = $request->input('status');
         }
-        if($request->title) {
-            $slide->title = $request->input('title');
-
-          }
-
-        if($request->body) {
-            $slide->body = $request->input('body');
-        } 
-    
+        $slide->title = $request->input('title');
+        $slide->title_en = $request->input('title_en');
+        $slide->body = $request->input('body');
+        $slide->body_en = $request->input('body_en');
         
+        if($request->hasFile('image')){
+
+
+            $path = parse_url($slide->image);
+    
+            File::delete(public_path($path['path']));
+    
+                $slide->image = $fileNameToStore;
+            }
 
         $slide->save();
 

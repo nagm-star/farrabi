@@ -10,13 +10,17 @@
              <div class="row">
                  
                  <div class="col-md-6 float-left">
-                    <a href="{{ route('admin.slides.index') }}" style="margin-right:10px;" class="btn btn-info btn-sm float-left" type="submit"><i class="fa fa-reply">&nbsp;</i>Back</a>
+                    <a href="{{ route('admin.slides.index') }}" style="margin-left:10px;" class="btn btn-info btn-sm float-left" type="submit"><i class="fa fa-reply">&nbsp;</i>Back</a>
                     
                     @if ($slide->status)
                         <button class="btn btn-danger btn-sm float-left"  onclick="handleUnPublish({{ $slide->id }})"><span class="fa fa-send"></span> Inactive</button>
                     @else
                     <button class="btn btn-success btn-sm float-left" onclick="handlePublish({{ $slide->id }})"><span class="fa fa-send"></span> Active</button>
                     @endif
+
+                    <a href="{{ route('admin.slides.edit', $slide->id) }}" style="margin-left:10px;" 
+                      class="btn btn-primary btn-sm float-left" type="submit">
+                      <i class="fa fa-pen">&nbsp;</i>Edit</a>
 
                  </div>
              </div>
@@ -25,10 +29,13 @@
                 <div class="card-body">
                     <div class="row">
 
-                           <div class="col-md-8 float-right">
-                               <div class="col-md-12 text-right">
+                           <div class="col-md-8 float-left">
+                               <div class="col-md-12 text-left">
                                    <h6  dir="rtl"><b class="color">Title:</b> <br>{!! $slide->title !!}</h6>
-                                   <h6  dir="rtl"><b class="color">Body:</b><p class="text-right">{!! $slide->body !!}</p></h6>
+                                   <h6  dir="rtl"><b class="color">Body:</b><p class="text-left">{!! $slide->body !!}</p></h6>
+                                   <hr>
+                                   <h6  dir="rtl"><b class="color">English Title:</b> <br>{!! $slide->title_en !!}</h6>
+                                   <h6  dir="rtl"><b class="color">English Body:</b><p class="text-left">{!! $slide->body_en !!}</p></h6>
                                    <hr>
                                </div>
       

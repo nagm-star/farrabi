@@ -15,11 +15,16 @@ class SettingSeeder extends Seeder
     public function run()
     {
         \App\Models\Setting::create([
-            'name' => 'الإدارة العامة للجوازات والهجرة',
+            'name' => 'كلية الفارابي للعلوم والتقانة',
+            'name_en' => 'Farabi College For Science and Technology',
 
-            'key' => 'Sudan, khartoum',
+            'key' => 'كلية , الفارابي ',
 
-            'description' => 'Passport',
+            'key_en' => 'farabi, collage',
+
+            'description' => 'كلية الفارابي للعلوم والتقانة',
+            
+            'description_en' => 'Farabi College for Science & Technology',
 
             'address' => 'Sudan, khartoum',
             
@@ -28,8 +33,6 @@ class SettingSeeder extends Seeder
             'contact_number' => '249 99183323',
 
             'email' => 'info@passport.gov.sd.com',
-
-            'image' => 'icon.png',
 
             'facebook' => '#',
 

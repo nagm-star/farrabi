@@ -11,7 +11,7 @@ class Post extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'title','body','image','user_id', 'published_at','slug'
+        'title','body','image','user_id', 'published_at','slug', 'title_en', 'body_en', 'slug_en'
     ];
 
     public function getImageAttribute($image)

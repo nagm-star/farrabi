@@ -30,12 +30,15 @@ class SettingController extends Controller
     
 
         $setting->name = request()->name;
+        $setting->name_en = request()->name_en;
         $setting->facebook = request()->facebook;
         $setting->key = request()->key;
+        $setting->key_en = request()->key_en;
         $setting->youtube = request()->youtube;
         $setting->address = request()->address;
         $setting->twitter = request()->twitter;
         $setting->description = request()->description;
+        $setting->description_en = request()->description_en;
         $setting->email = request()->email;
         $setting->contact_number = request()->contact_number;
 

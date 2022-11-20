@@ -72,7 +72,10 @@ class PostController extends Controller
 
          $post->title = $request->input('title');
          $post->body = $request->input('body');
+         $post->title_en = $request->input('title_en');
+         $post->body_en = $request->input('body_en');
          $post->slug = make_slug($request->input('title'));
+         $post->slug_en = str_slug($request->input('title_en'));
          $post->published_at = $request->published_at;
          $post->user_id = auth()->user()->id;
          if($request->has('status')){
@@ -124,17 +127,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
         if (! Gate::allows('is_admin')) {
             abort(403);
         }
-           //TODO: check validation and status button
-            $request->validate([
-                 'title' => 'string',
-                 'body' => 'string',
-                 'image' =>'image|mimes:jpeg,png,jpg|max:1048',
-             ]);
              
              if($request->hasFile('image')){
                 // Get filename with the extension
@@ -152,7 +149,8 @@ class PostController extends Controller
  
          
          $post->body = $request->input('body');
-            $post->published_at = $request->published_at;
+         $post->body_en = $request->input('body_en');
+         $post->published_at = $request->published_at;
          $post->user_id = auth()->user()->id;
          if($request->has('status')){
              $post->status = $request->input('status');
@@ -161,6 +159,10 @@ class PostController extends Controller
          if($request->title) {
             $post->title = $request->input('title');
              $post->slug = make_slug($request->input('title'));
+           }
+         if($request->title_en) {
+            $post->title_en = $request->input('title_en');
+             $post->slug_en = str_slug($request->input('title_en'));
            }
 
            if($request->hasFile('image')){
@@ -178,7 +180,6 @@ class PostController extends Controller
  
          // redirect user
          return redirect(route('admin.posts.index'));
- 
  
     }
 

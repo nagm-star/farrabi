@@ -11,12 +11,12 @@
                  
                  <div class="col-md-6 float-left">
                     <a href="{{ route('admin.posts.index') }}" style="margin-right:10px;" class="btn btn-info btn-sm float-left" type="submit"><i class="fa fa-reply">&nbsp;</i>Back</a>
-                    
                     @if ($post->status)
-                        <button class="btn btn-danger btn-sm float-left"  onclick="handleUnPublish({{ $post->id }})"><span class="fa fa-send"></span> Inactive</button>
+                    <button class="btn btn-danger btn-sm float-left"  onclick="handleUnPublish({{ $post->id }})"><span class="fa fa-send"></span> Inactive</button>
                     @else
                     <button class="btn btn-success btn-sm float-left" onclick="handlePublish({{ $post->id }})"><span class="fa fa-send"></span> Active</button>
                     @endif
+                    <a href="{{ route('admin.posts.edit', $post->id) }}" style="margin-left:10px;" class="btn btn-primary btn-sm float-left" type="submit"><i class="fa fa-pen">&nbsp;</i>Edit</a>
 
                  </div>
              </div>
@@ -29,6 +29,9 @@
                                <div class="col-md-12 text-right">
                                    <h6  dir="rtl"><b class="color">Title:</b> <br>{!! $post->title !!}</h6>
                                    <h6  dir="rtl"><b class="color">Description:</b><p class="text-right">{!! $post->body !!}</p></h6>
+                                   <hr>
+                                   <h6  dir="rtl"><b class="color">English Title:</b> <br>{!! $post->title_en !!}</h6>
+                                   <h6  dir="rtl"><b class="color">English Description:</b><p class="text-right">{!! $post->body_en !!}</p></h6>
                                    <hr>
                                </div>
       

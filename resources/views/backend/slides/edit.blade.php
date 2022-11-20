@@ -5,11 +5,13 @@
 
     <div class="card-body">
  
-        <form action="{{ route('admin.posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ isset($slide) ? route('admin.slides.update', $slide->id) : route('admin.slides.store') }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
-            @if(isset($post))
+
+            @if(isset($slide))
             @method('PUT')
             @endif
+
             <div class="modal-body">
                 @if (count($errors) > 0)
                 <div class="alert alert-danger">
@@ -29,7 +31,7 @@
 
                                 <div class="col-md-10">
                                 <label for="" class="col-sm-2 col-form-label">Title</label>
-                                    <input type="text" class="form-control  @if ($errors->has('title'))   is-invalid @endif" name="title" id="title"  value="{{ isset($post) ? $post->title : old('title')}}">
+                                    <input type="text" class="form-control  @if ($errors->has('title'))   is-invalid @endif" name="title" id="title"  value="{{ isset($slide) ? $slide->title : old('title')}}">
                                     @if ($errors->has('title'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('title') }}
@@ -37,26 +39,11 @@
                                     @endif
                                 </div>
                             </div>
-        
-                            <div class="form-group  row">
-
-                                <div class="col-md-10">
-                                <label for="" class="col-sm-2 col-form-label">Description</label>
-                                <textarea name="body" class="form-control @if ($errors->has('body'))   is-invalid @endif" id="js-ckeditor" cols="30"  rows="10"  >{{isset($post) ? $post->body : old('body')}}</textarea>
-                                @if ($errors->has('body'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('body') }}
-                                </div>
-                                @endif
-
-                                </div>
-                            </div>
-
                             <div class="form-group  row mb-2">
 
                                 <div class="col-md-10">
-                                <label for="title_en" class="col-sm-2 col-form-label">Title</label>
-                                    <input type="text" class="form-control  @if ($errors->has('title_en'))   is-invalid @endif" name="title_en" id="title_en"  value="{{ isset($post) ? $post->title_en : old('title_en')}}">
+                                <label for="title_en" class="col-sm-2 col-form-label">Title_en</label>
+                                    <input type="text" class="form-control  @if ($errors->has('title_en'))   is-invalid @endif" name="title_en" id="title_en"  value="{{ isset($slide) ? $slide->title_en : old('title_en')}}">
                                     @if ($errors->has('title_en'))
                                     <div class="invalid-feedback">
                                         {{ $errors->first('title_en') }}
@@ -64,27 +51,39 @@
                                     @endif
                                 </div>
                             </div>
-        
-                            <div class="form-group  row">
+                            <div class="form-group  row mb-2">
 
                                 <div class="col-md-10">
-                                <label for="body_en" class="col-sm-2 col-form-label">Description</label>
-                                <textarea name="body_en" class="form-control @if ($errors->has('body_en'))   is-invalid @endif" id="js-ckeditor-en" cols="30"  rows="10"  >{{isset($post) ? $post->body_en : old('body_en')}}</textarea>
-                                @if ($errors->has('body_en'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('body_en') }}
-                                </div>
-                                @endif
-
+                                <label for="" class="col-sm-2 col-form-label">Body</label>
+                                    <input type="text" class="form-control  @if ($errors->has('body'))   is-invalid @endif" name="body" id="body"  value="{{ isset($slide) ? $slide->body : old('body')}}">
+                                    @if ($errors->has('body'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('body') }}
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
+                            <div class="form-group  row mb-2">
+
+                                <div class="col-md-10">
+                                <label for="body_en" class="col-sm-2 col-form-label">Body</label>
+                                    <input type="text" class="form-control  @if ($errors->has('body_en'))   is-invalid @endif" name="body_en" id="body_en"  value="{{ isset($slide) ? $slide->body_en : old('body_en')}}">
+                                    @if ($errors->has('body_en'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('body_en') }}
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+        
+
                   <br>
  
-                  @if (isset($post))
+                  @if (isset($slide))
                   <div class="form-group row">
                       <div class="col-sm-10">
                     <label  class="col-sm-2 control-label" for=""></label>
-                      <img src="{{ asset($post->image) }}" alt="" height="50px" width="150px"  srcset="">
+                      <img src="{{ asset($slide->image) }}" alt="" height="50px" width="150px"  srcset="">
                     </div>
                   </div>
         
@@ -93,9 +92,10 @@
                     <div class="form-group row">
                         <div class="col-sm-10">
                           <label  class="col-sm-2 control-label" for="image">Image</label>
-                          <input type="file" class="form-control" name="image" id="image" />
-                          <p style="color:red; !important; top:2px;">Recommended size: 600x200 pixles</p>
+                          <input type="file" class="form-control" name="image" id="image">
+                          <p style="color:red; !important; top:2px;">Recommended size: 2000x1121 pixles</p>
                           </div>
+                          
                     </div>
                
                
@@ -103,13 +103,13 @@
                         <label  class="col-sm-1 control-label" for="status">Published?   </label>
                         <div class="col-sm-10">
                                 <div class="form-check">
-                                  <input class="form-check-input" type="radio" name="status" id="status1" value="1" {{ ($post->status=="1")? "checked" : "" }} >
+                                  <input class="form-check-input" type="radio" name="status" id="status1" value="1" {{ ($slide->status=="1")? "checked" : "" }} >
                                   <label class="form-check-label" for="status1">
                                     Active
                                   </label>
                                 </div>
                                 <div class="form-check">
-                                  <input class="form-check-input" type="radio" name="status" id="status2" value="0" {{ ($post->status=="0")? "checked" : "" }}>
+                                  <input class="form-check-input" type="radio" name="status" id="status2" value="0" {{ ($slide->status=="0")? "checked" : "" }}>
                                   <label class="form-check-label" for="status2">
                                     Inactive
                                   </label>
@@ -119,18 +119,10 @@
         
                       </div>
 
-                <div class="form-group row mb-2">
-                    <div class="col-sm-10">
-                    <label  class="col-sm-2 control-label" for="published_at">Published At</label>
-                        <input type="text" class="form-control" name="published_at" id="published_at" 
-                        value="{{isset($post) ? $post->published_at : old('published_at')}} ">
-                    </div>
-              </div>
-         <br>
                <div class="form-group row">
                    <div class="col-sm-10">
                     <button class="btn btn-lg btn-success">
-                        {{ isset($post) ? 'Update' : 'Save'}}
+                        {{ isset($slide) ? 'Update' : 'Save'}}
                     </button>
                </div>
             </div>
@@ -171,7 +163,6 @@ enableSecond: true
 })
 
  CKEDITOR.replace( 'js-ckeditor' );
- CKEDITOR.replace( 'js-ckeditor-en' );
 
 </script>
 
