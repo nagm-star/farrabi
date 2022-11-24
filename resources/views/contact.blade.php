@@ -1,6 +1,7 @@
 @extends('layouts.frontend.app')
 
 @section('content')
+<?php $lang = Config::get('app.locale'); ?>
 
     <!-- ======= Breadcrumbs ======= -->
     <section class="breadcrumbs">
@@ -8,10 +9,10 @@
   
           <div class="d-flex justify-content-between align-items-center">
             <h2>
-                      إتصل بنا  </h2>
+                      {{  __('translate.contact') }}  </h2>
             <ol>
-              <li><a href="/">الرئيسية</a></li>
-              <li>   إتصل بنا </li>
+              <li><a href="/">{{  __('translate.header.home') }}</a></li>
+              <li>   {{  __('translate.contact') }} </li>
             </ol>
           </div>
   
@@ -23,24 +24,22 @@
         <div class="container" data-aos="fade-up">
   
           <div class="section-title">
-            <h2> إتصل بنا </h2>
-            <h3><span> إتصل بنا </span></h3>
-            <p>تواصل معنا عبر قنوات الاتصال التالية</p>
+            <h2> {{  __('translate.contact') }} </h2>
           </div>
   
           <div class="row" data-aos="fade-up" data-aos-delay="100">
             <div class="col-lg-6">
               <div class="info-box mb-4">
                 <i class="bx bx-map"></i>
-                <h3>العنوان </h3>
-                <p>{{ $settings->address }}</p>
+                <h3>{{ __('translate.content.address') }} </h3>
+                <p>{{ $lang =='ar' ? $settings->address : $settings->address_en }}</p>
               </div>
             </div>
   
             <div class="col-lg-3 col-md-6">
               <div class="info-box  mb-4">
                 <i class="bx bx-envelope"></i>
-                <h3>بريد الكتروني</h3>
+                <h3> {{  __('translate.content.email') }}</h3>
                 <p>{{ $settings->email }}</p>
               </div>
             </div>
@@ -48,7 +47,7 @@
             <div class="col-lg-3 col-md-6">
               <div class="info-box  mb-4">
                 <i class="bx bx-phone-call"></i>
-                <h3>إتصل بنا</h3>
+                <h3>{{ __('translate.contact') }} </h3>
                 <p>{{ $settings->contact_number }}</p>
               </div>
             </div>
@@ -58,7 +57,7 @@
           <div class="row" data-aos="fade-up" data-aos-delay="100">
   
             <div class="col-lg-6 ">
-              <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2678.572059449073!2d32.52724370469552!3d15.582474101039109!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x168e8e3b4b3c275f%3A0x550d4d377dc5cf1b!2z2YXYsdmD2LIg2K7Yr9mF2KfYqiDYp9mE2KzZhdmH2YjYsSDYp9mE2YXYqtmD2KfZhdmE2Iwg2YjYstin2LHYqSDYp9mE2K_Yp9iu2YTZitip2Iwg2KfZhNiu2LHYt9mI2YU!5e0!3m2!1sar!2s!4v1667654723123!5m2!1sar!2s" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
+              <iframe class="mb-4 mb-lg-0" src="{{ $settings->map }}" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
             </div>
   
             <div class="col-lg-6">
@@ -119,7 +118,7 @@
                     <div  class="g-recaptcha" data-sitekey="6LdRAx0cAAAAAHrYeUBVtxRq-X3d1Azge-axWAJC"> </div>
     
                  </div>
-                <div class="text-center"><button type="submit">إرسال الرسالة </button></div>
+                <div class="text-center"><button type="submit">{{ __('translate.content.message') }}   </button></div>
               </form>
             </div>
   

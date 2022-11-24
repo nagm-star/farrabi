@@ -131,6 +131,18 @@
                               @endif
                           </div>
                       </div>
+
+                  <div class="form-group row"> 
+                      <div class="col-md-10">
+                          <label for="addres_en" class="col-sm-2 col-form-label">English Address</label>
+                              <input type="text" class="form-control  @if ($errors->has('address_en'))   is-invalid @endif" name="address_en" id="address_en"  value="{{ $settings->address_en }} ">
+                              @if ($errors->has('address_en'))
+                              <div class="invalid-feedback">
+                                  {{ $errors->first('address_en') }}
+                              </div>
+                              @endif
+                          </div>
+                      </div>
                   </div>
                   <div class="form-group  row mb-2">
                     <div class="col-md-10">
@@ -153,6 +165,19 @@
                             @if ($errors->has('contact_number'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('contact_number') }}
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                  
+                  <div class="form-group row mb-3">
+
+                    <div class="col-md-10">
+                        <label for="map" class="col-sm-2 col-form-label">Google Map</label>
+                            <input type="text" class="form-control  @if ($errors->has('map'))   is-invalid @endif" name="map" id="map"  value="{{ $settings->map }} ">
+                            @if ($errors->has('map'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('map') }}
                             </div>
                             @endif
                         </div>

@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\CollegeController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SlideController;
@@ -14,10 +14,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class , 'index'])->name('index');
 Route::get('post/{slug}', [FrontendController::class, 'post_details'])->name('post.show');
+Route::get('college/{slug}', [FrontendController::class, 'college_details'])->name('college.show');
 Route::get('/services/khartoum', [FrontendController::class , 'khartoum'])->name('khartoum');
 Route::get('/contact-us', [FrontendController::class , 'contact'])->name('contact');
 Route::post('/contactUs', [FrontendController::class , 'sendemail'])->name('send.email');
 Route::get('/about', [FrontendController::class , 'about'])->name('about');
+Route::get('/vision', [FrontendController::class , 'vision'])->name('vision');
+Route::get('/value', [FrontendController::class , 'value'])->name('value');
+Route::get('/condition', [FrontendController::class , 'condition'])->name('condition');
+Route::get('/Procedures', [FrontendController::class , 'Procedures'])->name('Procedures');
+Route::get('/Resignation', [FrontendController::class , 'Resignation'])->name('Resignation');
 
 
 Auth::routes();
@@ -27,13 +33,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('posts','App\Http\Controllers\PostController');
-// Route::get('/posts/trashed/', [App\Http\Controllers\PostController::class , 'trashed'])->name('posts.trashed');
 Route::put('/posts/Publish/{id}', [PostController::class , 'Publish'])->name('post.Publish');
 Route::put('/posts/unPublish/{id}', [PostController::class , 'unPublish'])->name('post.unPublish');
 
 Route::get('/trashed/posts', [PostController::class , 'trashed'])->name('posts.trashed');
 Route::put('/trashed/restore/{id}', [PostController::class , 'restore'])->name('posts.restore');
 Route::delete('/posts/delete/{id}', [PostController::class,'kill'])->name('post.kill');
+
+Route::resource('colleges','App\Http\Controllers\CollegeController');
+Route::put('/colleges/Publish/{id}', [CollegeController::class , 'Publish'])->name('college.Publish');
+Route::put('/colleges/unPublish/{id}', [CollegeController::class , 'unPublish'])->name('college.unPublish');
 
 
 // Users

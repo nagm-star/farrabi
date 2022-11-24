@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\College;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Post;
 use App\Models\Setting;
@@ -41,6 +42,13 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function($view){
             $latest = Post::where('status', '=', 1)->orderBy('created_at' ,'DESC')->paginate(5);
             $view->with('latest', $latest);
+        });
+        
+        
+        
+        view()->composer('*', function($view){
+            $AllColleges = College::where('status', '=', 1)->get();
+            $view->with('AllColleges', $AllColleges);
         });
         
         

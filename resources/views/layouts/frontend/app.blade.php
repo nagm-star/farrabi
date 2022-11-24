@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ar">
+<html  lang="{{$lang = Config::get('app.locale')}}">
 
 <head>
     {!! SEO::generate(true) !!}
@@ -48,60 +48,58 @@
 <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
 
-        <!-- <h1 class="logo"><a href="index.html">BizLand<span>.</span></a></h1> -->
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="/" class="logo"><img src="{{ asset('frontend/img/logo.png') }}" alt=""></a>
+        <a href="/" class="logo"><img src="{{ $lang == 'ar' ? asset('img/logo.png') : asset('img/logo-en.png') }}" alt=""></a>
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" href="#hero">الرئيسية</a></li>
-                <li><a class="nav-link scrollto" href="{{  route('about') }}">عن الإدارة</a></li>
-                <li><a class="nav-link scrollto active" href="#news">أخبار</a></li>
-                <li class="dropdown"><a href="#"><span>دليل الخدمات</span> <i class="bi bi-chevron-down"></i></a>
+                <li><a class="nav-link scrollto active" href="#hero">{{ __('translate.header.home') }}</a></li>
+                    <li class="dropdown"><a href="#"><span>  {{ __('translate.header.about') }}</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li>
+                                <a href="{{ route('about') }}" > 
+                                    {{ __('translate.header.about') }}
+                                </a>
+                            <li>
+                            <li>
+                                <a href="{{ route('vision') }}" > 
+                                    {{ __('translate.header.vision_message') }}
+                                </a>
+                            <li>
+                            <li>
+                                <a href="{{ route('value') }}" > 
+                                    {{ __('translate.header.value') }}
+                                   
+                                </a>
+                            <li>
+                        </ul>
+                    </li>
+                <li class="dropdown"><a href="#"><span> {{ __('translate.header.accept') }}</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
+                <li><a class="nav-link scrollto" href="{{ route('condition') }}">{{ __('translate.header.condition') }}</a></li>
+                <li><a class="nav-link scrollto" href="{{ route('Procedures') }}">{{ __('translate.header.process') }}</a></li>
+                <li><a class="nav-link scrollto" href="{{ route('Resignation') }}">{{ __('translate.header.resignation') }}</a></li>
+
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="#"><span> {{ __('translate.header.program') }}</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        @foreach ($AllColleges as $college_header)
                         <li>
-                            <a href="{{ route('service.details', 'sudanese')}}" > 
-                                خدمات السودانيين 
+                            <a class="nav-link scrollto" href="{{ route('college.show', $lang == 'ar' ? $college_header->slug : $college_header->slug_en  )}}">
+                                {{ $lang == 'ar' ? $college_header->title : $college_header->title_en }}
                             </a>
-                        <li>
-                        <li>
-                            <a href="{{ route('service.details', 'foreigner')}}" > 
-                                خدمات الأجانب
-                            </a>
-                        <li>
+                        </li>
+                        @endforeach
                     </ul>
                 </li>
-                <li class="dropdown"><a href="#"><span>الخدمات</span> <i class="bi bi-chevron-down"></i></a>
+                <li class="dropdown"><a href="#"><span>{{ __('translate.header.media') }}</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li>
-                            <a href="https://eservice.passport.gov.sd/passport" target="_blank">التقديم الإلكتروني للجواز</a>
-                        </li>
-                        <li>
-                            <a href="https://eservice.passport.gov.sd/passport/reg/order_status"  target="_blank"> الإستعلام عن جاهزية الجواز</a>
-                        </li>
-                        <li>
-                            <a href="https://eservice.passport.gov.sd/aliens" target="_blank">  خدمة ضيوفي</a>
-                        </li>
-                        <li><a href="#">
-                                التقديم للأجانب</a></li>
+                        <li><a class="nav-link scrollto" href="/#news">{{  __('translate.content.news') }} </a></li>
+
                     </ul>
                 </li>
-                <li class="dropdown"><a href="#"><span>مواقعنا</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a href="#">خارج السودان</a></li>
-                        <li><a href="#">بالولايات</a></li>
-                        <li class="dropdown"><a href="#"><span>بالخرطوم</span> <i
-                                    class="bi bi-chevron-left"></i></a>
-                            <ul>
-                                <li><a href="{{ route('khartoum') }}"> مجمع الخرطوم </a></li>
-                                <li><a href="{{ route('bahri') }}"> مجمع بحري </a></li>
-                                <li><a href="{{ route('omdurman') }}"> مجمع أم درمان </a></li>
-                                <li><a href="#"> خدمات الأجانب </a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li><a class="nav-link scrollto" href="{{  route('contact') }}">اتصل بنا</a></li>
+
+                <li><a class="nav-link scrollto" href="{{  route('contact') }}">{{  __('translate.contact') }}  </a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
@@ -122,38 +120,34 @@
 
                     <div class="col-lg-3 col-md-6 footer-contact">
                         <!-- <h3>BizLand<span>.</span></h3> -->
-                        <a href="index.html" class="logo"><img src="{{ asset('frontend/img/logo-footer.png') }}" alt=""></a>
-                        <p>
-                            {{ $settings->address }} <br><br>
-                            <strong>تلفون:</strong>{{ $settings->contact_number }}<br>
-                            <strong>بريد إلكتروني:</strong> {{ $settings->email}}<br>
+                        <a href="/" class="logo mb-5"><img src="{{ $lang == 'ar' ? asset('img/logo-footer.png') : asset('img/logo-footer-en.png') }}" alt=""></a> <br>
+                        <p class="mt-4">
+                            {{ $lang=='ar' ? $settings->address : $settings->address_en }} <br>
+                            <strong>{{  __('translate.content.phone') }}: </strong>{{ $settings->contact_number }}<br>
+                            <strong> {{  __('translate.email') }}: </strong> {{ $settings->email}}<br>
                         </p>
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>روابط مفيدة</h4>
+                        <h4>{{  __('translate.footer.useful') }}  </h4>
                         <ul>
-                            <li><i class="bx bx-chevron-left"></i> <a href="#/">الرئيسية</a></li>
-                            <li><i class="bx bx-chevron-left"></i> <a href="#">قوانين ولوائح </a></li>
-                            <li><i class="bx bx-chevron-left"></i> <a href="{{ route('projects')}}">مشروعات</a></li>
-                            <li><i class="bx bx-chevron-left"></i> <a href="#">تقارير</a></li>
-                            <li><i class="bx bx-chevron-left"></i> <a  href="mailto:{{ $settings->email}}">الشكاوي</a></li>
+                            <li><i class="bx bx-chevron-left"></i> <a href="#/">{{ __('translate.header.home') }}</a></li>
+                            <li><i class="bx bx-chevron-left"></i> <a href="#">{{ __('translate.footer.law') }}</a></li>
                         </ul>
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>خدمات</h4>
+                        <h4> {{ __('translate.header.accept') }}</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-left"></i> <a href="https://eservice.passport.gov.sd/passport" target="_blank">التقديم الإلكتروني للجواز </a></li>
-                            <li><i class="bx bx-chevron-left"></i> <a href="https://eservice.passport.gov.sd/passport/reg/order_status"  target="_blank">الإستعلام عن جاهزية الجواز </a></li>
-                            <li><i class="bx bx-chevron-left"></i> <a href="https://eservice.passport.gov.sd/aliens" target="_blank">خدمة ضيوفي</a></li>
-                            <li><i class="bx bx-chevron-left"></i> <a href="#">التقديم للأجانب</a></li>
+                            <li><i class="bx bx-chevron-left"></i> <a href="{{ route('condition') }}">{{ __('translate.header.condition') }}</a></li>
+                            <li><i class="bx bx-chevron-left"></i> <a href="{{ route('Procedures') }}">{{ __('translate.header.process') }}</a></li>
+                            <li><i class="bx bx-chevron-left"></i> <a href="{{ route('Resignation') }}">{{ __('translate.header.resignation') }}</a></li>
                         </ul>
                     </div>
-
+          
                     <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>تابعنا</h4>
-                        <p>تابعنا علي مواقع التواصل</p>
+                        <h4>{{ __('translate.follow') }}</h4>
+                        <p>  {{ __('translate.follow-body') }}    </p>
                         <div class="social-links mt-3">
                             <a href="{{ $settings->twitter }}" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
                             <a href="{{ $settings->facebook }}" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -167,7 +161,7 @@
 
         <div class="container py-4">
             <div class="copyright text-center">
-                &copy; <strong><span></span></strong>  الحقوق محفوظة للادارة العامة للجوازات و الهجرة
+                &copy; <strong><span></span></strong>   {{ __('translate.rights') }}
             </div>
         </div>
 

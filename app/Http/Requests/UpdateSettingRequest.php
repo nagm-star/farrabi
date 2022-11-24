@@ -26,11 +26,15 @@ class UpdateSettingRequest extends FormRequest
         return [
             'name' => 'sometimes|string',
             'key' => 'required',
+            'name_en' => 'sometimes|string',
+            'address' => 'sometimes|string',
+            'key_en' => 'required',
+            'address_en' => 'required',
             'description' => 'required',
+            'description_en' => 'required',
             'contact_number' => 'required',
             'email' => 'required',
-            // 'image' =>'required|image|mimes:jpeg,png,jpg|max:948',
-            'address' => 'required',
+            'map' => 'required',
         ];
     }
 }

@@ -44,11 +44,11 @@
               <div class="p-4 p-xl-5 flex-grow-1 d-flex align-items-center">
                 <div class="w-100">
                   <a class="link-fx fw-semibold fs-2 text-white" href="index.html">
-                    هيئة الجوازات والسجل المدني
-<span class="fw-normal"></span>
+ كلية الفارابي للعلوم والتقانة
+                    <span class="fw-normal"></span>
                   </a>
                   <p class="text-white-75 me-xl-8 mt-2">
-                    الإدارة العامة للجوازات والهجرة
+                     
                   </p>
                 </div>
               </div>
@@ -59,7 +59,7 @@
             <!-- Main Section -->
             <div class="hero-static col-lg-8 d-flex flex-column align-items-center bg-body-extra-light">
               <div class="p-3 w-100 d-lg-none text-center">
-                <a class="link-fx fw-semibold fs-3 text-dark" href="index.html">
+                <a class="link-fx fw-semibold fs-3 text-dark" href="/">
                   One<span class="fw-normal">UI</span>
                 </a>
               </div>

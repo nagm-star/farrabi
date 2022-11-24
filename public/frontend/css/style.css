@@ -15,6 +15,10 @@
     src: url(./Cairo1.ttf)
 }
 
+.url-color {
+    color: rgb(16, 17, 70);
+}
+
 body {
     font-family: "cairo", sans-serif;
     color: #444444;
@@ -1310,6 +1314,7 @@ blockquote span {
     padding-bottom: 20px;
     border-bottom: 1px solid #eee;
 }
+
 .portfolio-details .portfolio-info2 {
     padding: 30px;
     box-shadow: 0px 0 30px rgba(34, 34, 34, 0.08);
@@ -1321,8 +1326,6 @@ blockquote span {
     margin-bottom: 20px;
     padding-bottom: 20px;
 }
-
-
 
 .portfolio-details .portfolio-info ul {
     list-style: none;

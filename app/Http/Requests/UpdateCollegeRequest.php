@@ -13,7 +13,7 @@ class UpdateCollegeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class UpdateCollegeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'sometimes', 'string',
+            'title_en' => 'sometimes', 'string',
+            'body' => 'sometimes', 'string',
+            'body_en' => 'sometimes', 'string',
         ];
     }
 }

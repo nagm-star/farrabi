@@ -12,6 +12,9 @@
                 <a class="btn btn-success mt-2 mb-0" href="{{ route('admin.posts.create') }}">
                   Add New Post  <i class="nav-main-link-icon si si-plus"></i>
                 </a>
+                <a class="btn btn-primary mt-2 mb-0" href="{{ route('admin.posts.trashed') }}">
+                  Trashed Posts  <i class="nav-main-link-icon si si-trash"></i>
+                </a>
               </div>          
         </div>
         <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">

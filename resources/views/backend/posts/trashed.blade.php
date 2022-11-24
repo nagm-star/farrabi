@@ -18,11 +18,13 @@
             </li>
           </ol>
         </nav>
+        <a href="{{ route('admin.posts.index') }}" style="margin-right:10px;" class="btn btn-info btn-sm float-left" type="submit"><i class="fa fa-reply">&nbsp;</i>Back</a>
+
       </div>
     </div>
   </div>
   <!-- END Hero -->
-
+ 
   <!-- Page Content -->
   <div class="content">
     <!-- Dynamic Table Full -->

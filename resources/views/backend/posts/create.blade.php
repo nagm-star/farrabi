@@ -23,6 +23,7 @@
                 </div>
                 @endif
                 <div class="accordion" id="accordionExample">
+                    <a href="{{ route('admin.posts.index') }}" style="margin-right:10px;" class="btn btn-info btn-sm mb-2 float-left" type="submit"><i class="fa fa-reply">&nbsp;</i>Back</a>
                 <div class="card">
 
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">

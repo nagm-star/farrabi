@@ -20,9 +20,9 @@
         @endcan
         @can('is_admin')
         <li class="nav-main-item">
-          <a class="nav-main-link active" href="{{ route('admin.posts.trashed') }}">
-            <i class="nav-main-link-icon si si-trash"></i>
-            <span class="nav-main-link-name">Trashed Post</span>
+          <a class="nav-main-link active" href="{{ route('admin.colleges.index') }}">
+            <i class="nav-main-link-icon si si-note"></i>
+            <span class="nav-main-link-name">College</span>
           </a>
         </li>
         <li class="nav-main-item">

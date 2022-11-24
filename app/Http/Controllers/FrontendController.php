@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Slide;
 use App\Models\Contact;
 use App\Models\Setting;
+use App\Models\College;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\TwitterCard;
@@ -13,6 +14,7 @@ use Artesaos\SEOTools\Facades\JsonLd;
 // OR with multi
 use Artesaos\SEOTools\Facades\JsonLdMulti;
 use App\Http\Requests\CreateContactRequest;
+use Illuminate\Support\Facades\Config;
 
 use Illuminate\Http\Request;
 use Session;
@@ -30,11 +32,11 @@ class FrontendController extends Controller
 
         SEOMeta::setTitle($name);
         SEOMeta::setDescription($description);
-        SEOMeta::setCanonical('http://passport.gov.sd');
+        SEOMeta::setCanonical('https://alfarrabi.edu.sd');
 
         OpenGraph::setDescription($description);
         OpenGraph::setTitle($name);
-        OpenGraph::setUrl('http://passport.gov.sd/');
+        OpenGraph::setUrl('https://alfarrabi.edu.sd/');
         OpenGraph::addProperty('type', 'articles');
 
 
@@ -60,11 +62,11 @@ class FrontendController extends Controller
 
         SEOMeta::setTitle($name);
         SEOMeta::setDescription($description);
-        SEOMeta::setCanonical('http://passport.gov.sd');
+        SEOMeta::setCanonical('https://alfarrabi.edu.sd');
 
         OpenGraph::setDescription($description);
         OpenGraph::setTitle($name);
-        OpenGraph::setUrl('http://passport.gov.sd/');
+        OpenGraph::setUrl('https://alfarrabi.edu.sd/');
         OpenGraph::addProperty('type', 'articles');
 
 
@@ -116,11 +118,11 @@ class FrontendController extends Controller
  
          SEOMeta::setTitle($name);
          SEOMeta::setDescription($description);
-         SEOMeta::setCanonical('http://passport.gov.sd/about');
+         SEOMeta::setCanonical('https://alfarrabi.edu.sd/about');
  
          OpenGraph::setDescription($description);
          OpenGraph::setTitle($name);
-         OpenGraph::setUrl('http://passport.gov.sd/about');
+         OpenGraph::setUrl('https://alfarrabi.edu.sd/about');
          OpenGraph::addProperty('type', 'articles');
  
  
@@ -129,73 +131,280 @@ class FrontendController extends Controller
          JsonLd::addImage($image);
  
  
-         return view('about')
+         return view('pages.about')
+                 ->with('settings', Setting::first());
+     }
+     public function vision()
+     {
+         $name = Setting::first()->name;
+         $image = Setting::first()->image;
+         $description = Setting::first()->description;
+ 
+         SEOMeta::setTitle($name);
+         SEOMeta::setDescription($description);
+ 
+         SEOMeta::setTitle($name);
+         SEOMeta::setDescription($description);
+         SEOMeta::setCanonical('https://alfarrabi.edu.sd/vision');
+ 
+         OpenGraph::setDescription($description);
+         OpenGraph::setTitle($name);
+         OpenGraph::setUrl('https://alfarrabi.edu.sd/vision');
+         OpenGraph::addProperty('type', 'articles');
+ 
+ 
+         JsonLd::setTitle($name);
+         JsonLd::setDescription($description);
+         JsonLd::addImage($image);
+ 
+ 
+         return view('pages.vision')
+                 ->with('settings', Setting::first());
+     }
+     public function value()
+     {
+         $name = Setting::first()->name;
+         $image = Setting::first()->image;
+         $description = Setting::first()->description;
+ 
+         SEOMeta::setTitle($name);
+         SEOMeta::setDescription($description);
+ 
+         SEOMeta::setTitle($name);
+         SEOMeta::setDescription($description);
+         SEOMeta::setCanonical('https://alfarrabi.edu.sd/value');
+ 
+         OpenGraph::setDescription($description);
+         OpenGraph::setTitle($name);
+         OpenGraph::setUrl('https://alfarrabi.edu.sd/value');
+         OpenGraph::addProperty('type', 'articles');
+ 
+ 
+         JsonLd::setTitle($name);
+         JsonLd::setDescription($description);
+         JsonLd::addImage($image);
+ 
+ 
+         return view('pages.value')
                  ->with('settings', Setting::first());
      }
 
-    public function post_details($slug)
-    {
-        $post = Post::where('slug', $slug)->first();
+     
+     public function condition()
+     {
+         $name = Setting::first()->name;
+         $image = Setting::first()->image;
+         $description = Setting::first()->description;
+ 
+         SEOMeta::setTitle($name);
+         SEOMeta::setDescription($description);
+ 
+         SEOMeta::setTitle($name);
+         SEOMeta::setDescription($description);
+         SEOMeta::setCanonical('https://alfarrabi.edu.sd/condition');
+ 
+         OpenGraph::setDescription($description);
+         OpenGraph::setTitle($name);
+         OpenGraph::setUrl('https://alfarrabi.edu.sd/condition');
+         OpenGraph::addProperty('type', 'articles');
+ 
+ 
+         JsonLd::setTitle($name);
+         JsonLd::setDescription($description);
+         JsonLd::addImage($image);
+ 
+ 
+         return view('pages.condition')
+                 ->with('settings', Setting::first());
+     }
+     
+          
+     public function Procedures()
+     {
+         $name = Setting::first()->name;
+         $image = Setting::first()->image;
+         $description = Setting::first()->description;
+ 
+         SEOMeta::setTitle($name);
+         SEOMeta::setDescription($description);
+ 
+         SEOMeta::setTitle($name);
+         SEOMeta::setDescription($description);
+         SEOMeta::setCanonical('https://alfarrabi.edu.sd/Procedures');
+ 
+         OpenGraph::setDescription($description);
+         OpenGraph::setTitle($name);
+         OpenGraph::setUrl('https://alfarrabi.edu.sd/Procedures');
+         OpenGraph::addProperty('type', 'articles');
+ 
+ 
+         JsonLd::setTitle($name);
+         JsonLd::setDescription($description);
+         JsonLd::addImage($image);
+ 
+ 
+         return view('pages.procedures')
+                 ->with('settings', Setting::first());
+     }
+
+               
+     public function Resignation()
+     {
+         $name = Setting::first()->name;
+         $image = Setting::first()->image;
+         $description = Setting::first()->description;
+ 
+         SEOMeta::setTitle($name);
+         SEOMeta::setDescription($description);
+ 
+         SEOMeta::setTitle($name);
+         SEOMeta::setDescription($description);
+         SEOMeta::setCanonical('https://alfarrabi.edu.sd/Resignation');
+ 
+         OpenGraph::setDescription($description);
+         OpenGraph::setTitle($name);
+         OpenGraph::setUrl('https://alfarrabi.edu.sd/Resignation');
+         OpenGraph::addProperty('type', 'articles');
+ 
+ 
+         JsonLd::setTitle($name);
+         JsonLd::setDescription($description);
+         JsonLd::addImage($image);
+ 
+ 
+         return view('pages.resignation')
+                 ->with('settings', Setting::first());
+     }
+
+     public function post_details($slug)
+     {
+         $post = Post::where('slug', $slug)->orWhere('slug_en', $slug)->first();
+         
+         $lang = Config::get('app.locale');
+         
+         if($lang == 'ar') {
+ 
+         SEOMeta::setTitle($post->name);
+         SEOMeta::setDescription($post->body);
+         SEOMeta::addMeta('article:section', $post->name, 'property');
+         SEOMeta::addMeta('article:published_time', $post->created_at->toW3CString(), 'property');
+ 
+         OpenGraph::setDescription($post->body);
+         OpenGraph::setTitle($post->name);
+         OpenGraph::setUrl('http://nic.gov.sd');
+         OpenGraph::addProperty('type', $post->body);
+         OpenGraph::addProperty('locale', 'pt-br');
+         OpenGraph::addProperty('locale:alternate', ['pt-pt', 'en-us']);
+ 
+         OpenGraph::addImage($post->image);
+         OpenGraph::addImage(['url' => $post->image, 'size' => 300]);
+         OpenGraph::addImage($post->image, ['height' => 300, 'width' => 300]);
+         
+ 
+         JsonLd::setTitle($post->name);
+         JsonLd::setDescription($post->body);
+         JsonLd::setType('Article');
+         
+         TwitterCard::setTitle($post->name);
+                  
+         } else {
+          
+         SEOMeta::setTitle($post->name_en);
+         SEOMeta::setDescription($post->body_en);
+         SEOMeta::addMeta('article:section', $post->name_en, 'property');
+         SEOMeta::addMeta('article:published_time', $post->created_at->toW3CString(), 'property');
+ 
+         OpenGraph::setDescription($post->body_en);
+         OpenGraph::setTitle($post->name_en);
+         OpenGraph::setUrl('https://sdexpo2020.sd');
+         OpenGraph::addProperty('type', $post->body_en);
+         OpenGraph::addProperty('locale', 'pt-br');
+         OpenGraph::addProperty('locale:alternate', ['pt-pt', 'en-us']);
+ 
+         OpenGraph::addImage($post->image);
+         OpenGraph::addImage(['url' => $post->image, 'size' => 300]);
+         OpenGraph::addImage($post->image, ['height' => 300, 'width' => 300]);
+         
+ 
+         JsonLd::setTitle($post->name_en);
+         JsonLd::setDescription($post->body_en);
+         JsonLd::setType('Article');
+         
+         TwitterCard::setTitle($post->name_en);
+         
+         }
+         //dd(123);
         
-        SEOMeta::setTitle($post->title);
-        SEOMeta::setDescription($post->body);
-        SEOMeta::addMeta('article:section', $post->title, 'property');
-        SEOMeta::addMeta('article:published_time', $post->created_at->toW3CString(), 'property');
+         return view('post-details')->with('post', $post); 
+            
+     }
 
-        OpenGraph::setDescription($post->body);
-        OpenGraph::setTitle($post->title);
-        OpenGraph::setUrl('http://passport.gov.sd');
-        OpenGraph::addProperty('type', $post->body);
-        OpenGraph::addProperty('locale', 'pt-br');
-        OpenGraph::addProperty('locale:alternate', ['pt-pt', 'en-us']);
 
-        OpenGraph::addImage($post->image);
-        OpenGraph::addImage(['url' => $post->image, 'size' => 300]);
-        OpenGraph::addImage($post->image, ['height' => 300, 'width' => 300]);
+     public function college_details($slug)
+     {
+         $college = College::where('slug', $slug)->orWhere('slug_en', $slug)->first();
+         
+         $lang = Config::get('app.locale');
+         
+         if($lang == 'ar') {
+ 
+         SEOMeta::setTitle($college->name);
+         SEOMeta::setDescription($college->body);
+         SEOMeta::addMeta('article:section', $college->name, 'property');
+         SEOMeta::addMeta('article:published_time', $college->created_at->toW3CString(), 'property');
+ 
+         OpenGraph::setDescription($college->body);
+         OpenGraph::setTitle($college->name);
+         OpenGraph::setUrl('http://nic.gov.sd');
+         OpenGraph::addProperty('type', $college->body);
+         OpenGraph::addProperty('locale', 'pt-br');
+         OpenGraph::addProperty('locale:alternate', ['pt-pt', 'en-us']);
+ 
+         OpenGraph::addImage($college->image);
+         OpenGraph::addImage(['url' => $college->image, 'size' => 300]);
+         OpenGraph::addImage($college->image, ['height' => 300, 'width' => 300]);
+         
+ 
+         JsonLd::setTitle($college->name);
+         JsonLd::setDescription($college->body);
+         JsonLd::setType('Article');
+         
+         TwitterCard::setTitle($college->name);
+                  
+         } else {
+          
+         SEOMeta::setTitle($college->name_en);
+         SEOMeta::setDescription($college->body_en);
+         SEOMeta::addMeta('article:section', $college->name_en, 'property');
+         SEOMeta::addMeta('article:published_time', $college->created_at->toW3CString(), 'property');
+ 
+         OpenGraph::setDescription($college->body_en);
+         OpenGraph::setTitle($college->name_en);
+         OpenGraph::setUrl('https://sdexpo2020.sd');
+         OpenGraph::addProperty('type', $college->body_en);
+         OpenGraph::addProperty('locale', 'pt-br');
+         OpenGraph::addProperty('locale:alternate', ['pt-pt', 'en-us']);
+ 
+         OpenGraph::addImage($college->image);
+         OpenGraph::addImage(['url' => $college->image, 'size' => 300]);
+         OpenGraph::addImage($college->image, ['height' => 300, 'width' => 300]);
+         
+ 
+         JsonLd::setTitle($college->name_en);
+         JsonLd::setDescription($college->body_en);
+         JsonLd::setType('Article');
+         
+         TwitterCard::setTitle($college->name_en);
+         
+         }
+         //dd(123);
         
+         return view('college-details')->with('college', $college); 
+            
+     }
 
-        JsonLd::setTitle($post->title);
-        JsonLd::setDescription($post->body);
-        JsonLd::setType('Article');
-        
-        TwitterCard::setTitle($post->title);
-                 
-       
-       return view('post-details')->with('post', $post); 
-           
-    }
-    public function project_details($slug)
-    {
-        $project = Project::where('slug', $slug)->first();
-        
-        SEOMeta::setTitle($project->title);
-        SEOMeta::setDescription($project->body);
-        SEOMeta::addMeta('article:section', $project->title, 'property');
-        SEOMeta::addMeta('article:published_time', $project->created_at->toW3CString(), 'property');
-
-        OpenGraph::setDescription($project->body);
-        OpenGraph::setTitle($project->title);
-        OpenGraph::setUrl('http://passport.gov.sd/project/$slug');
-        OpenGraph::addProperty('type', $project->body);
-        OpenGraph::addProperty('locale', 'pt-br');
-        OpenGraph::addProperty('locale:alternate', ['pt-pt', 'en-us']);
-
-        OpenGraph::addImage($project->image);
-        OpenGraph::addImage(['url' => $project->image, 'size' => 300]);
-        OpenGraph::addImage($project->image, ['height' => 300, 'width' => 300]);
-        
-
-        JsonLd::setTitle($project->title);
-        JsonLd::setDescription($project->body);
-        JsonLd::setType('Article');
-        
-        TwitterCard::setTitle($project->title);
-                 
-       
-       return view('project-details')->with('project', $project); 
-           
-    }
-
+     
+ 
     public function bahri()
     {
 
@@ -204,11 +413,11 @@ class FrontendController extends Controller
 
         SEOMeta::setTitle('مجمع خدمات الجمهور - بحري');
         SEOMeta::setDescription('مجمع خدمات الجمهور - بحري');
-        SEOMeta::setCanonical('http://passport.gov.sd');
+        SEOMeta::setCanonical('https://alfarrabi.edu.sd');
 
         OpenGraph::setDescription('مجمع خدمات الجمهور - بحري');
         OpenGraph::setTitle('مجمع خدمات الجمهور - بحري');
-        OpenGraph::setUrl('http://passport.gov.sd/');
+        OpenGraph::setUrl('https://alfarrabi.edu.sd/');
         OpenGraph::addProperty('type', 'articles');
 
 
@@ -227,11 +436,11 @@ class FrontendController extends Controller
 
         SEOMeta::setTitle('مجمع خدمات الجمهور - أم درمان');
         SEOMeta::setDescription('مجمع خدمات الجمهور - أم درمان');
-        SEOMeta::setCanonical('http://passport.gov.sd');
+        SEOMeta::setCanonical('https://alfarrabi.edu.sd');
 
         OpenGraph::setDescription('مجمع خدمات الجمهور - أم درمان');
         OpenGraph::setTitle('مجمع خدمات الجمهور - أم درمان');
-        OpenGraph::setUrl('http://passport.gov.sd/');
+        OpenGraph::setUrl('https://alfarrabi.edu.sd/');
         OpenGraph::addProperty('type', 'articles');
 
 
@@ -250,11 +459,11 @@ class FrontendController extends Controller
 
         SEOMeta::setTitle('مجمع خدمات الجمهور - الخرطوم');
         SEOMeta::setDescription('مجمع خدمات الجمهور - الخرطوم');
-        SEOMeta::setCanonical('http://passport.gov.sd');
+        SEOMeta::setCanonical('https://alfarrabi.edu.sd');
 
         OpenGraph::setDescription('مجمع خدمات الجمهور - الخرطوم');
         OpenGraph::setTitle('مجمع خدمات الجمهور - الخرطوم');
-        OpenGraph::setUrl('http://passport.gov.sd/');
+        OpenGraph::setUrl('https://alfarrabi.edu.sd/');
         OpenGraph::addProperty('type', 'articles');
 
 
@@ -263,61 +472,6 @@ class FrontendController extends Controller
 
 
         return view('khartoum-complex');
-    }
-
-    public function service_details($id)
-    {
-        $type = '';
-        if($id == 'sudanese') {
-            $type = 1;
-        } else {
-            $type = 0;
-        }
-       
-        $services = Service::where('category', $type)->get();
-        
-  
-        OpenGraph::setUrl('http://passport.gov.sd/services/details/', $id);
-        OpenGraph::addProperty('locale', 'pt-br');
-        OpenGraph::addProperty('locale:alternate', ['pt-pt', 'en-us']);
-
-                 
-       
-       return view('service-details', compact('type'))->with('services', $services); 
-           
-    }
-
-    public function service_details_specific($slug)
-    {
-        $service = Service::where('slug', $slug)->first();
-        $relatedServices = Service::where('category', $service->category)->get();
-        SEOMeta::setTitle($service->title);
-        SEOMeta::setDescription($service->body);
-        SEOMeta::addMeta('article:section', $service->title, 'property');
-        SEOMeta::addMeta('article:published_time', $service->created_at->toW3CString(), 'property');
-
-        OpenGraph::setDescription($service->body);
-        OpenGraph::setTitle($service->title);
-        OpenGraph::setUrl('http://passport.gov.sd');
-        OpenGraph::addProperty('type', $service->body);
-        OpenGraph::addProperty('locale', 'pt-br');
-        OpenGraph::addProperty('locale:alternate', ['pt-pt', 'en-us']);
-
-        OpenGraph::addImage($service->image);
-        OpenGraph::addImage($service->image, ['height' => 300, 'width' => 300]);
-        
-
-        JsonLd::setTitle($service->title);
-        JsonLd::setDescription($service->body);
-        JsonLd::setType('Article');
-        
-        TwitterCard::setTitle($service->title);
-                 
-       
-       return view('service-specific-details')
-                       ->with('service', $service)
-                       ->with('relatedServices', $relatedServices); 
-           
     }
 
     public function projects()
@@ -331,11 +485,11 @@ class FrontendController extends Controller
 
         SEOMeta::setTitle($name);
         SEOMeta::setDescription($description);
-        SEOMeta::setCanonical('http://passport.gov.sd/projects');
+        SEOMeta::setCanonical('https://alfarrabi.edu.sd/projects');
 
         OpenGraph::setDescription($description);
         OpenGraph::setTitle($name);
-        OpenGraph::setUrl('http://passport.gov.sd/projects');
+        OpenGraph::setUrl('https://alfarrabi.edu.sd/projects');
         OpenGraph::addProperty('type', 'articles');
 
 
