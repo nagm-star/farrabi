@@ -12,8 +12,8 @@
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
             <div class="col-md-12 ftco-animate">
                 <div class="text w-100 text-center">
-                    <p> {{ $slide->title }}  </p>
-                    <h1 class="mb-3">  {{ $slide->body}}  </h1>
+                    <p> {{ $lang == 'ar' ? $slide->title  : $slide->title_en }}  </p>
+                    <h1 class="mb-3">  {{ $lang == 'ar' ? $slide->body  : $slide->body_en }}  </h1>
                 </div>
             </div>
         </div>
@@ -120,13 +120,14 @@
         <div class="row">
             @foreach($posts as $post)
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                <div class="icon-box" style="padding: 0px 0px 20px 0px !important;">
+                <div class="icon-box">
                   <img src="{{ $post->image }}" style="" class="img-fluid" alt="{{ $lang =='ar' ? $post->title : $post->title_en }}">
                   <h5><a href="{{ route('post.show', $lang =='ar' ? $post->slug : $post->slug_en) }}"  class="url-color">{{ $lang=='ar' ? $post->title : $post->title_en}}</a></h5>
-                  <p>{!!  substr(strip_tags($lang =='ar' ? $post->body : $post->body_en), 0, 350) !!} </p>
-                  <a href="{{ route('post.show', $lang =='ar' ? $post->slug : $post->slug_en) }}" class="url-color"><b>
-                      {{ __('translate.readmore')}}</b></a>
-
+                      <p>{!!  substr(strip_tags($lang =='ar' ? $post->body : $post->body_en), 0, 350) !!} ...
+                        <a href="{{ route('post.show', $lang =='ar' ? $post->slug : $post->slug_en) }}" class="url-color">
+                          <b>   {{ __('translate.readmore')}} </b>
+                        </a>
+                      </p>
                 </div>
               </div>
             @endforeach

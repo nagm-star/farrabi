@@ -5,7 +5,7 @@ return [
         'farabi' => 'Farabi College For Science and Technology ',
         'about' => 'About ',
         'vision_message' => 'Vision and Mission ',
-        'value' => 'Value',
+        'value' => 'Core values of the College',
         'accept' => 'Admission and Registration',
         'process' => 'Registration processes',
         'condition' => 'Admission requirements',
@@ -43,6 +43,7 @@ return [
     'follow-body' => 'Follow us on social media',
 
     'content' => [
+        'details' => 'Details',
         'getstart' => 'Get Start',
         'big-about' => ' Big Goal a communication platform between the student and the teacher. Teachers create high-level courses in the vicinity',
         'big' => 'Big Goal Platform ',

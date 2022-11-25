@@ -15,7 +15,8 @@
     <link href="{{ asset('frontend/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet"> --}}
+    <link href="{{asset(app()->getlocale() == 'ar' ? 'frontend/css/style' : 'frontend/css/style-en').'.css'}}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('frontend/carousel/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/carousel/css/owl.theme.default.min.css') }}">
@@ -95,11 +96,22 @@
                 <li class="dropdown"><a href="#"><span>{{ __('translate.header.media') }}</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a class="nav-link scrollto" href="/#news">{{  __('translate.content.news') }} </a></li>
+                        <li><a class="nav-link scrollto" href="{{ route('media')}}">{{  __('translate.content.mediagallery') }} </a></li>
 
                     </ul>
                 </li>
 
                 <li><a class="nav-link scrollto" href="{{  route('contact') }}">{{  __('translate.contact') }}  </a></li>
+
+                <li>
+                    @if($lang == 'en')
+                    <a class="nav-item nav-link" href="{{ route('lang.switch',['lang'=>'ar'])}}" >  العربية</a>
+                    @else
+      
+                    <a class="nav-item nav-link" href="{{ route('lang.switch',['lang'=>'en'])}}" > English</a>
+                    @endif
+                </li>
+
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
@@ -131,17 +143,28 @@
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4>{{  __('translate.footer.useful') }}  </h4>
                         <ul>
-                            <li><i class="bx bx-chevron-left"></i> <a href="#/">{{ __('translate.header.home') }}</a></li>
-                            <li><i class="bx bx-chevron-left"></i> <a href="#">{{ __('translate.footer.law') }}</a></li>
+                            @if ($lang == 'ar')
+                                <li><i class="bx bx-chevron-left"></i> <a href="#/">{{ __('translate.header.home') }}</a></li>
+                                <li><i class="bx bx-chevron-left"></i> <a href="#">{{ __('translate.footer.law') }}</a></li>
+                            @else
+                            <li><i class="bx bx-chevron-right"></i> <a href="#/">{{ __('translate.header.home') }}</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">{{ __('translate.footer.law') }}</a></li>
+                            @endif
                         </ul>
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4> {{ __('translate.header.accept') }}</h4>
                         <ul>
+                            @if ($lang == 'ar')
                             <li><i class="bx bx-chevron-left"></i> <a href="{{ route('condition') }}">{{ __('translate.header.condition') }}</a></li>
                             <li><i class="bx bx-chevron-left"></i> <a href="{{ route('Procedures') }}">{{ __('translate.header.process') }}</a></li>
                             <li><i class="bx bx-chevron-left"></i> <a href="{{ route('Resignation') }}">{{ __('translate.header.resignation') }}</a></li>
+                            @else
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('condition') }}">{{ __('translate.header.condition') }}</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('Procedures') }}">{{ __('translate.header.process') }}</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('Resignation') }}">{{ __('translate.header.resignation') }}</a></li>
+                            @endif
                         </ul>
                     </div>
           

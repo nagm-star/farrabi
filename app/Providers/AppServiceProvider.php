@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\College;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Post;
+use App\Models\Portfolio;
 use App\Models\Setting;
 use App\Models\Contact;
 use App\Models\User;
@@ -42,6 +43,12 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function($view){
             $latest = Post::where('status', '=', 1)->orderBy('created_at' ,'DESC')->paginate(5);
             $view->with('latest', $latest);
+        });
+
+        
+        view()->composer('*', function($view){
+            $latestPhoto = Portfolio::where('status', '=', 1)->orderBy('created_at' ,'DESC')->paginate(5);
+            $view->with('latestPhoto', $latestPhoto);
         });
         
         

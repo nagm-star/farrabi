@@ -5,10 +5,10 @@
 
     <div class="card-body">
  
-        <form action="{{ isset($slide) ? route('admin.slides.update', $slide->id) : route('admin.slides.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ isset($portfolio) ? route('admin.portfolio.update', $portfolio->id) : route('admin.portfolio.store') }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
 
-            @if(isset($slide))
+            @if(isset($portfolio))
             @method('PUT')
             @endif
 
@@ -30,11 +30,11 @@
                             <div class="form-group  row mb-2">
 
                                 <div class="col-md-10">
-                                <label for="" class="col-sm-2 col-form-label">Title</label>
-                                    <input type="text" class="form-control  @if ($errors->has('title'))   is-invalid @endif" name="title" id="title"  value="{{ isset($slide) ? $slide->title : old('title')}}">
-                                    @if ($errors->has('title'))
+                                <label for="name" class="col-sm-2 col-form-label">Title</label>
+                                    <input type="text" class="form-control  @if ($errors->has('name'))   is-invalid @endif" name="name" id="name"  value="{{ isset($portfolio) ? $portfolio->name : old('name')}}">
+                                    @if ($errors->has('name'))
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('title') }}
+                                        {{ $errors->first('name') }}
                                     </div>
                                     @endif
                                 </div>
@@ -42,49 +42,26 @@
                             <div class="form-group  row mb-2">
 
                                 <div class="col-md-10">
-                                <label for="title_en" class="col-sm-2 col-form-label">English Title</label>
-                                    <input type="text" class="form-control  @if ($errors->has('title_en'))   is-invalid @endif" name="title_en" id="title_en"  value="{{ isset($slide) ? $slide->title_en : old('title_en')}}">
-                                    @if ($errors->has('title_en'))
+                                <label for="name_en" class="col-sm-2 col-form-label">English Name</label>
+                                    <input type="text" class="form-control  @if ($errors->has('name_en'))   is-invalid @endif" name="name_en" id="name_en"  value="{{ isset($portfolio) ? $portfolio->name_en : old('name_en')}}">
+                                    @if ($errors->has('name_en'))
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('title_en') }}
+                                        {{ $errors->first('name_en') }}
                                     </div>
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-group  row mb-2">
-
-                                <div class="col-md-10">
-                                <label for="" class="col-sm-2 col-form-label">Body</label>
-                                    <input type="text" class="form-control  @if ($errors->has('body'))   is-invalid @endif" name="body" id="body"  value="{{ isset($slide) ? $slide->body : old('body')}}">
-                                    @if ($errors->has('body'))
-                                    <div class="invalid-feedback">
-                                        {{ $errors->first('body') }}
-                                    </div>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="form-group  row mb-2">
-
-                                <div class="col-md-10">
-                                <label for="body_en" class="col-sm-2 col-form-label">English Body</label>
-                                    <input type="text" class="form-control  @if ($errors->has('body_en'))   is-invalid @endif" name="body_en" id="body_en"  value="{{ isset($slide) ? $slide->body_en : old('body_en')}}">
-                                    @if ($errors->has('body_en'))
-                                    <div class="invalid-feedback">
-                                        {{ $errors->first('body_en') }}
-                                    </div>
-                                    @endif
-                                </div>
-                            </div>
-        
 
                   <br>
  
-                  @if (isset($slide))
+                  @if (isset($portfolio))
                   <div class="form-group row">
                       <div class="col-sm-10">
                     <label  class="col-sm-2 control-label" for=""></label>
-                      <img src="{{ asset($slide->image) }}" alt="" height="50px" width="150px"  srcset="">
-                    </div>
+                    @foreach(json_decode($portfolio->image) as $image)
+                    <img src="{{ asset('/uploads/gallery//'.$image ) }}" alt="{{ $portfolio->title }}" height="60px" width="120px"   >
+                    @endforeach                    
+                </div>
                   </div>
         
                   @endif
@@ -92,28 +69,37 @@
                     <div class="form-group row">
                         <div class="col-sm-10">
                           <label  class="col-sm-2 control-label" for="image">Image</label>
-                          <input type="file" class="form-control" name="image" id="image">
+                          <input type="file" class="form-control" name="image[]" id="image"  multiple="multiple">
                           <p style="color:red; !important; top:2px;">Recommended size: 2000x1121 pixles</p>
                           </div>
                           
                     </div>
                
                
-                <div class="form-group row mb-2">
-                    <div class="col-sm-10">
-                        <label class="form-label">Published?</label> 
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" value="{{ isset($slide) ? $slide->status : 1 }}"
-                             id="status" name="status" @if(isset($slide) && $slide->status === 1) checked @endif >
-                            <label class="form-check-label" for="status"></label>
-                        </div>
-                    </div>
-                </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-2 control-label" for="status">Published?   </label>
+                        <div class="col-sm-10">
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="status" id="status1" value="1" {{ ($portfolio->status=="1")? "checked" : "" }} >
+                                  <label class="form-check-label" for="status1">
+                                    Active
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="status" id="status2" value="0" {{ ($portfolio->status=="0")? "checked" : "" }}>
+                                  <label class="form-check-label" for="status2">
+                                    Inactive
+                                  </label>
+                                </div>
+                              </div>
+                 
+        
+                      </div>
 
                <div class="form-group row">
                    <div class="col-sm-10">
                     <button class="btn btn-lg btn-success">
-                        {{ isset($slide) ? 'Update' : 'Save'}}
+                        {{ isset($portfolio) ? 'Update' : 'Save'}}
                     </button>
                </div>
             </div>

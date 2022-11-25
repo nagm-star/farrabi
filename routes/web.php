@@ -4,11 +4,13 @@ use App\Http\Controllers\CollegeController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SlideController;
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('/lang/{lang?}',[App\Http\Controllers\LangSwitcherController::class, 'LangSwitcher'])->name('lang.switch');
 
 
 
@@ -24,6 +26,9 @@ Route::get('/value', [FrontendController::class , 'value'])->name('value');
 Route::get('/condition', [FrontendController::class , 'condition'])->name('condition');
 Route::get('/Procedures', [FrontendController::class , 'Procedures'])->name('Procedures');
 Route::get('/Resignation', [FrontendController::class , 'Resignation'])->name('Resignation');
+
+Route::get('media/gallary', [App\Http\Controllers\FrontEndController::class, 'gallery'])->name('media');
+Route::get('media/gallary/{slug}', [App\Http\Controllers\FrontEndController::class, 'portfolioDetails'])->name('portfolio.show');
 
 
 Auth::routes();
@@ -59,6 +64,13 @@ Route::get('/user/admin/{id}', 'App\Http\Controllers\UsersController@admin')->na
 Route::resource('slides', 'App\Http\Controllers\SlideController');
 Route::put('/slides/Publish/{id}', [SlideController::class, 'Publish'])->name('slide.Publish');
 Route::put('/slides/unPublish/{id}', [SlideController::class, 'unPublish'])->name('slide.unPublish');
+
+// Portfolio 
+Route::resource('portfolio', 'App\Http\Controllers\PortfolioController');
+Route::put('/portfolio/Publish/{id}', [PortfolioController::class, 'Publish'])->name('portfolio.Publish');
+Route::put('/portfolio/unPublish/{id}', [PortfolioController::class, 'unPublish'])->name('portfolio.unPublish');
+
+
 
 Route::resource('contacts', 'App\Http\Controllers\ContactController');
 

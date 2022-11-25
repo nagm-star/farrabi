@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Slide;
+use App\Models\Portfolio;
 use App\Models\Contact;
 use App\Models\Setting;
 use App\Models\College;
@@ -23,26 +24,50 @@ class FrontendController extends Controller
 {
     public function index()
     {
+        $lang = Config::get('app.locale');
         $name = Setting::first()->name;
-        $image = Setting::first()->image;
         $description = Setting::first()->description;
+        $name_en = Setting::first()->name_en;
+        $image = Setting::first()->image;
+        $description_en = Setting::first()->description_en;
 
-        SEOMeta::setTitle($name);
-        SEOMeta::setDescription($description);
+        if($lang == 'ar') {
+            SEOMeta::setTitle($name);
+            SEOMeta::setDescription($description);
+    
+            SEOMeta::setTitle($name);
+            SEOMeta::setDescription($description);
+            SEOMeta::setCanonical('https://alfarrabi.edu.sd');
+    
+            OpenGraph::setDescription($description);
+            OpenGraph::setTitle($name);
+            OpenGraph::setUrl('https://alfarrabi.edu.sd/');
+            OpenGraph::addProperty('type', 'articles');
+    
+    
+            JsonLd::setTitle($name);
+            JsonLd::setDescription($description);
+            JsonLd::addImage($image);
+        } else {
+            SEOMeta::setTitle($name_en);
+            SEOMeta::setDescription($description_en);
+    
+            SEOMeta::setTitle($name_en);
+            SEOMeta::setDescription($description_en);
+            SEOMeta::setCanonical('https://alfarrabi.edu.sd');
+    
+            OpenGraph::setDescription($description_en);
+            OpenGraph::setTitle($name_en);
+            OpenGraph::setUrl('https://alfarrabi.edu.sd');
+            OpenGraph::addProperty('type', 'articles');
+    
+    
+            JsonLd::setTitle($name_en);
+            JsonLd::setDescription($description_en);
+            JsonLd::addImage($image);
 
-        SEOMeta::setTitle($name);
-        SEOMeta::setDescription($description);
-        SEOMeta::setCanonical('https://alfarrabi.edu.sd');
+        }
 
-        OpenGraph::setDescription($description);
-        OpenGraph::setTitle($name);
-        OpenGraph::setUrl('https://alfarrabi.edu.sd/');
-        OpenGraph::addProperty('type', 'articles');
-
-
-        JsonLd::setTitle($name);
-        JsonLd::setDescription($description);
-        JsonLd::addImage($image);
 
 
         return view('index')
@@ -50,6 +75,85 @@ class FrontendController extends Controller
                 ->with('posts', Post::orderBy('created_at' ,'DESC')->paginate(3))
                 ->with('settings', Setting::first());
     }
+
+    public function gallery()
+    {    
+        $lang = Config::get('app.locale');
+        $name = Setting::first()->name;
+        $name_en = Setting::first()->name_en;
+        $description = Setting::first()->description;
+        $description_en = Setting::first()->description_en;
+
+        if($lang == 'ar') {
+            SEOMeta::setTitle($name);
+            SEOMeta::setDescription($description);
+        } else {
+            SEOMeta::setTitle($name_en);
+            SEOMeta::setDescription($description_en);
+
+        }
+        
+        return view('media-gallery')
+            ->with('portfolios', Portfolio::where('status' ,'=', 1)->orderBy('created_at' ,'DESC')->simplePaginate(6));
+        
+    }
+
+
+    public function portfolioDetails($slug)
+    {
+        //dd($slug);
+        $portfolio = Portfolio::where('slug', $slug)->orWhere('slug_en', $slug)->first();
+        
+        $lang = Config::get('app.locale');
+        
+        if($lang == 'ar') {
+
+        SEOMeta::setTitle($portfolio->name);
+        SEOMeta::addMeta('article:section', $portfolio->name, 'property');
+        SEOMeta::addMeta('article:published_time', $portfolio->created_at->toW3CString(), 'property');
+
+        OpenGraph::setTitle($portfolio->name);
+        OpenGraph::setUrl('https://alfarrabi.edu.sd');
+        OpenGraph::addProperty('locale', 'pt-br');
+        OpenGraph::addProperty('locale:alternate', ['pt-pt', 'en-us']);
+
+        OpenGraph::addImage($portfolio->image);
+        OpenGraph::addImage(['url' => $portfolio->image, 'size' => 300]);
+        OpenGraph::addImage($portfolio->image, ['height' => 300, 'width' => 300]);
+        
+
+        JsonLd::setTitle($portfolio->name);
+        JsonLd::setType('Article');
+        
+        TwitterCard::setTitle($portfolio->name);
+                 
+        } else {
+         
+        SEOMeta::setTitle($portfolio->name_en);
+        SEOMeta::addMeta('article:section', $portfolio->name_en, 'property');
+        SEOMeta::addMeta('article:published_time', $portfolio->created_at->toW3CString(), 'property');
+
+        OpenGraph::setTitle($portfolio->name_en);
+        OpenGraph::setUrl('https://alfarrabi.edu.sd');
+        OpenGraph::addProperty('locale', 'pt-br');
+        OpenGraph::addProperty('locale:alternate', ['pt-pt', 'en-us']);
+
+        OpenGraph::addImage($portfolio->image);
+        OpenGraph::addImage(['url' => $portfolio->image, 'size' => 300]);
+        OpenGraph::addImage($portfolio->image, ['height' => 300, 'width' => 300]);
+        
+
+        JsonLd::setTitle($portfolio->name_en);
+        JsonLd::setType('Article');
+        
+        TwitterCard::setTitle($portfolio->name_en);
+        
+        }
+        //dd(123);
+ 
+          return view('portfolio-details')->with('portfolio', $portfolio); 
+    }
+
 
     public function contact()
     {

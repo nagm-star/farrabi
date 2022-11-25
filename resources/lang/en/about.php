@@ -23,19 +23,19 @@ The college vision is to prepare future leaders in various fields of human knowl
     ',
     'value' => '
     <h4>College Core Values:</h4>
-Social and moral commitment. <br>
-Affiliation. <br>
-Global vision. <br>
-Inclusivity. <br>
-•the quality. <br>
-Creativity and excellence. <br>
-Transparency and academic freedom. <br>',
+• Social and moral commitment. <br>
+• Affiliation. <br>
+• Global vision. <br>
+• Inclusivity. <br>
+• the quality. <br>
+• Creativity and excellence. <br>
+• Transparency and academic freedom. <br>',
 
 'conditions' => '
-     Admission patterns and conditions:
+    <h4>Admission patterns and conditions:</h4>
 Admission patterns: Students are accepted into the college according to the following patterns:
 General admission, admission of foreign students, or any other type approved by the General Administration of Admissions. This is in accordance with what is determined by the national admission regulations and the internal regulations of the college.
-  Admission requirements: The student must accept the following:
+  <h4>Admission requirements: The student must accept the following:</h4>
 a. To meet the general admission requirements set by the Admission Committee of the Ministry of Higher Education and Scientific Research.
 B. To fulfill any other conditions determined by the College Admission Committee or its regulations.
 c. To be medically fit.
