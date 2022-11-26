@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/lang/{lang?}',[App\Http\Controllers\LangSwitcherController::class, 'LangSwitcher'])->name('lang.switch');
 
+Route::get('/sitemap.xml/', [App\Http\Controllers\SitemapController::class, 'index']);
+Route::get('/sitemap.xml/sitemap/media/news', [App\Http\Controllers\SitemapController::class, 'post']);
+Route::get('/sitemap.xml/sitemap/colleges', [App\Http\Controllers\SitemapController::class, 'colleges']);
+
+
 
 
 Route::get('/', [FrontendController::class , 'index'])->name('index');
